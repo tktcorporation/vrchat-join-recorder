@@ -35,6 +35,9 @@ GitHub Codespacesを使用して開発する場合、通常デスクトップ環
 ### 注意
 * electron background 側の hotreload が効かない
 
+## 規約
+* Date オブジェクトはすべて UTC で扱い、文字列化する際に localtime に変換して表示する
+
 ## Release
 * 自動タグ付け
   * [.github/workflows/tag-on-push.yml](.github/workflows/tag-on-push.yml)

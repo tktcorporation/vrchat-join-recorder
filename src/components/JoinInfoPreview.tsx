@@ -2,6 +2,7 @@ import VrcPhoto from '@/components/ui/VrcPhoto';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { trpcReact } from '@/trpc';
+import * as datefns from 'date-fns';
 import type React from 'react';
 
 type Props = React.HTMLAttributes<HTMLDivElement>;
@@ -13,7 +14,7 @@ export function JoinInfoPreview({ className }: Props) {
 
   // join日時の降順で並び替え
   const sortedInfoMap = infoMap?.sort((a, b) => {
-    return (a.world?.joinDatetime ?? 0) > (b.world?.joinDatetime ?? 0) ? -1 : 1;
+    return datefns.compareDesc(a.world?.joinDate ?? 0, b.world?.joinDate ?? 0);
   });
 
   const error = data?.error;
@@ -23,7 +24,7 @@ export function JoinInfoPreview({ className }: Props) {
   const PhotoList = (
     tookPhotoList: {
       photoPath: string;
-      tookDatetime: string;
+      tookDate: Date;
     }[],
   ) => {
     return tookPhotoList.map((photo) => {
@@ -32,7 +33,7 @@ export function JoinInfoPreview({ className }: Props) {
           onClickPhoto={() => openPhotoPathMutation.mutate(photo.photoPath)}
           photoPath={photo.photoPath}
           className="w-32"
-          key={photo.tookDatetime}
+          key={datefns.format(photo.tookDate, 'yyyy-MM-dd-HH:mm')}
         />
       );
     });
@@ -52,14 +53,20 @@ export function JoinInfoPreview({ className }: Props) {
               return (
                 <div
                   className="space-y-3 basis-1/2"
-                  key={`${item.world?.joinDatetime}-${index}`}
+                  key={`${item.world?.joinDate}-${index}`}
                 >
                   <div>
                     <p className="text-lg">
                       {item.world?.worldName ?? 'Unknown'}
                     </p>
                     <p className="text-sm text-gray-500">
-                      Join日時: {item.world?.joinDatetime ?? 'Unknown'}
+                      Join日時:{' '}
+                      {item.world?.joinDate
+                        ? datefns.format(
+                            item.world?.joinDate,
+                            'yyyy/MM/dd HH:mm',
+                          )
+                        : 'Unknown'}
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-4">

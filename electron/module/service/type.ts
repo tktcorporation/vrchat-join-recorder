@@ -1,3 +1,4 @@
+import * as datefns from 'date-fns';
 import * as neverthrow from 'neverthrow';
 import * as z from 'zod';
 
@@ -10,17 +11,7 @@ const photoFileNameWithExtRegex =
 const PhotoFileNameWithExtSchema = z.string().regex(photoFileNameWithExtRegex);
 type PhotoFileNameWithExt = z.infer<typeof PhotoFileNameWithExtSchema>;
 interface ParsedPhotoFileName {
-  date: {
-    year: string;
-    month: string;
-    day: string;
-  };
-  time: {
-    hour: string;
-    minute: string;
-    second: string;
-    millisecond: string;
-  };
+  date: Date;
   resolution: {
     width: string;
     height: string;
@@ -37,6 +28,7 @@ const parsePhotoFileName = (
     return neverthrow.err('parsePhotoFileName: matches is null');
   }
 
+  // これらは local time
   const date = matches[1];
   const time = matches[2];
   const millisecond = matches[3];
@@ -44,17 +36,17 @@ const parsePhotoFileName = (
   const height = matches[5];
   const ext = matches[6] ?? null;
   return neverthrow.ok({
-    date: {
-      year: date.slice(0, 4),
-      month: date.slice(5, 7),
-      day: date.slice(8, 10),
-    },
-    time: {
-      hour: time.slice(0, 2),
-      minute: time.slice(3, 5),
-      second: time.slice(6, 8),
-      millisecond,
-    },
+    date: datefns.parse(
+      `${date.slice(0, 4)}-${date.slice(5, 7)}-${date.slice(
+        8,
+        10,
+      )} ${time.slice(0, 2)}:${time.slice(3, 5)}:${time.slice(
+        6,
+        8,
+      )}.${millisecond}`,
+      'yyyy-MM-dd HH:mm:ss.SSS',
+      new Date(),
+    ),
     resolution: {
       width,
       height,

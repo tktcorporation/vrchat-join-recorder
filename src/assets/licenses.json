@@ -2840,7 +2840,7 @@
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/vite/LICENSE.md"
   },
   "vrchat-join-recorder@0.4.0": {
-    "licenses": "Custom: https://github.com/tktcorporation/add-world-name-to-vrc-photo",
+    "licenses": "Custom: https://github.com/tktcorporation/vrchat-join-recorder/releases",
     "repository": "https://github.com/tktcorporation/add-world-name-to-vrc-photo",
     "publisher": "tktcorporation",
     "path": "/workspaces/add-world-name-to-vrc-photo",

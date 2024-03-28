@@ -16,24 +16,7 @@ const removeAdjacentDuplicateWorldEntries = (
   worldJoinLogInfoList: vrchatLogService.WorldJoinLogInfo[],
 ): vrchatLogService.WorldJoinLogInfo[] => {
   worldJoinLogInfoList.sort((a, b) => {
-    return datefns.compareAsc(
-      new Date(
-        Number(a.year),
-        Number(a.month) - 1,
-        Number(a.day),
-        Number(a.hour),
-        Number(a.minute),
-        Number(a.second),
-      ),
-      new Date(
-        Number(b.year),
-        Number(b.month) - 1,
-        Number(b.day),
-        Number(b.hour),
-        Number(b.minute),
-        Number(b.second),
-      ),
-    );
+    return datefns.compareAsc(a.date, b.date);
   });
 
   // 隣接する重複を削除
@@ -51,7 +34,7 @@ const genYearMonthPath = (
   vrchatPhotoDir: string,
   info: vrchatLogService.WorldJoinLogInfo,
 ) => {
-  return path.join(vrchatPhotoDir, `${info.year}-${info.month}`);
+  return path.join(vrchatPhotoDir, datefns.format(info.date, 'yyyy-MM'));
 };
 const genfileName = (info: vrchatLogService.WorldJoinLogInfo) => {
   return `${vrchatLogService.convertWorldJoinLogInfoToOneLine(info)}.jpeg`;
@@ -171,29 +154,11 @@ const getToCreateMap =
       content: Buffer;
     } | null)[] = await Promise.all(
       worldJoinLogInfoList.value.map(async (info) => {
-        const date = new Date(
-          Number(info.year),
-          Number(info.month) - 1,
-          Number(info.day),
-          Number(info.hour),
-          Number(info.minute),
-          Number(info.second),
-        );
-
-        // date は local time なので utc に変換
-        // timezone は実行環境から取得する
-        const diffMinsToUtc = date.getTimezoneOffset();
-        const utcDate = datefns.addMinutes(date, diffMinsToUtc);
-
         const contentImage = await generateOGPImageBuffer({
           worldName: info.worldName,
-          date: {
-            year: Number(info.year),
-            month: Number(info.month),
-            day: Number(info.day),
-          },
+          date: info.date,
           exif: {
-            dateTimeOriginal: utcDate,
+            dateTimeOriginal: info.date,
           },
           imageWidth: props.imageWidth,
         });

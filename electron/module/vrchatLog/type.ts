@@ -1,3 +1,4 @@
+import * as datefns from 'date-fns';
 import * as neverthrow from 'neverthrow';
 import * as z from 'zod';
 
@@ -11,25 +12,14 @@ const isWorldId = (str: string): str is WorldId => {
 };
 
 const convertToJoinInfoFileName = ({
-  year,
-  month,
-  day,
-  hour,
-  minute,
-  second,
-  millisecond,
+  date,
   worldId,
 }: {
-  year: string;
-  month: string;
-  day: string;
-  hour: string;
-  minute: string;
-  second: string;
-  millisecond: string;
+  date: Date;
   worldId: WorldId;
 }): JoinInfoFileName => {
-  return `VRChat_${year}-${month}-${day}_${hour}-${minute}-${second}.${millisecond}_${worldId}`;
+  // date は utc が入っていて、local time に変換される
+  return `VRChat_${datefns.format(date, 'yyyy-MM-dd_HH-mm-ss.SSS')}_${worldId}`;
 };
 
 // const isJoinInfoFileName = (str: string): str is JoinInfoFileName => {
@@ -50,6 +40,7 @@ const parseJoinInfoFileName = (joinInfoFileName: JoinInfoFileName) => {
     return neverthrow.err('parseJoinInfoFileName: matches is null');
   }
 
+  // これらは local time
   const year = matches[1];
   const month = matches[2];
   const day = matches[3];
@@ -59,17 +50,11 @@ const parseJoinInfoFileName = (joinInfoFileName: JoinInfoFileName) => {
   const millisecond = matches[7];
   const worldId = matches[8];
   return neverthrow.ok({
-    date: {
-      year,
-      month,
-      day,
-    },
-    time: {
-      hour,
-      minute,
-      second,
-      millisecond,
-    },
+    date: datefns.parse(
+      `${year}-${month}-${day} ${hour}:${minute}:${second}.${millisecond}`,
+      'yyyy-MM-dd HH:mm:ss.SSS',
+      new Date(),
+    ),
     worldId,
   });
 };
