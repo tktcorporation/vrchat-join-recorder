@@ -48,67 +48,23 @@ describe('settingStore', () => {
 });
 
 describe('getVRChatJoinInfoWithVRChatPhotoList', () => {
-  type DateTime = {
-    date: {
-      year: string;
-      month: string;
-      day: string;
-    };
-    time: {
-      hour: string;
-      minute: string;
-      second: string;
-      millisecond: string;
-    };
-  };
   type PhotoAndJoin = neverthrow.Result<
     (
       | {
           type: 'PHOTO';
-          datetime: DateTime;
+          date: Date;
           path: string;
           worldId: null;
         }
       | {
           type: 'JOIN';
-          datetime: DateTime;
+          date: Date;
           path: string;
           worldId: string;
         }
     )[],
     Error
   >;
-  const createDatetimeByDate = (date: Date) => {
-    return {
-      date: {
-        year: date.getFullYear().toString(),
-        month: (date.getMonth() + 1).toString().padStart(2, '0'),
-        day: date.getDate().toString().padStart(2, '0'),
-      },
-      time: {
-        hour: date.getHours().toString().padStart(2, '0'),
-        minute: date.getMinutes().toString().padStart(2, '0'),
-        second: date.getSeconds().toString().padStart(2, '0'),
-        millisecond: date.getMilliseconds().toString().padStart(3, '0'),
-      },
-    };
-  };
-  it('createDatetimeByDate', () => {
-    const result = createDatetimeByDate(new Date('2023-01-01T14:15:00.000Z'));
-    expect(result).toEqual({
-      date: {
-        year: '2023',
-        month: '01',
-        day: '01',
-      },
-      time: {
-        hour: '14',
-        minute: '15',
-        second: '00',
-        millisecond: '000',
-      },
-    });
-  });
   // テスト用の設定を使う
   const { getVRChatJoinInfoWithVRChatPhotoList } = getService(
     getSettingStore('test-settings'),
@@ -124,13 +80,13 @@ describe('getVRChatJoinInfoWithVRChatPhotoList', () => {
           type: 'PHOTO',
           path: `${year}-${month}/photo`,
           worldId: null,
-          datetime: createDatetimeByDate(new Date('2023-12-13T15:00:00.000Z')),
+          date: new Date('2023-12-13T15:00:00.000Z'),
         },
         {
           type: 'JOIN',
           path: `${year}-${month}/join`,
           worldId: 'wrld_1234567890',
-          datetime: createDatetimeByDate(new Date('2023-12-13T14:00:00.000Z')),
+          date: new Date('2023-12-13T14:00:00.000Z'),
         },
       ]);
     };
@@ -168,37 +124,37 @@ describe('getVRChatJoinInfoWithVRChatPhotoList', () => {
           type: 'JOIN',
           path: `${year}-${month}/join1`,
           worldId: 'wrld_1234567890',
-          datetime: createDatetimeByDate(new Date('2023-12-13T12:00:00.000Z')),
+          date: new Date('2023-12-13T12:00:00.000Z'),
         },
         {
           type: 'PHOTO',
           path: `${year}-${month}/photo2`,
           worldId: null,
-          datetime: createDatetimeByDate(new Date('2023-12-13T16:00:00.000Z')),
+          date: new Date('2023-12-13T16:00:00.000Z'),
         },
         {
           type: 'JOIN',
           path: `${year}-${month}/join2`,
           worldId: 'wrld_1234567890',
-          datetime: createDatetimeByDate(new Date('2023-12-13T14:00:00.000Z')),
+          date: new Date('2023-12-13T14:00:00.000Z'),
         },
         {
           type: 'PHOTO',
           path: `${year}-${month}/photo1`,
           worldId: null,
-          datetime: createDatetimeByDate(new Date('2023-12-13T15:00:00.000Z')),
+          date: new Date('2023-12-13T15:00:00.000Z'),
         },
         {
           type: 'JOIN',
           path: `${year}-${month}/join3`,
           worldId: 'wrld_1234567890',
-          datetime: createDatetimeByDate(new Date('2023-12-13T18:00:00.000Z')),
+          date: new Date('2023-12-13T18:00:00.000Z'),
         },
         {
           type: 'PHOTO',
           path: `${year}-${month}/photo3`,
           worldId: null,
-          datetime: createDatetimeByDate(new Date('2023-12-13T19:00:00.000Z')),
+          date: new Date('2023-12-13T19:00:00.000Z'),
         },
       ]);
     };
@@ -261,13 +217,13 @@ describe('getVRChatJoinInfoWithVRChatPhotoList', () => {
           type: 'PHOTO',
           path: `${year}-${month}/photo1`,
           worldId: null,
-          datetime: createDatetimeByDate(new Date('2023-12-13T15:00:00.000Z')),
+          date: new Date('2023-12-13T15:00:00.000Z'),
         },
         {
           type: 'PHOTO',
           path: `${year}-${month}/photo2`,
           worldId: null,
-          datetime: createDatetimeByDate(new Date('2023-12-13T16:00:00.000Z')),
+          date: new Date('2023-12-13T16:00:00.000Z'),
         },
       ]);
     };

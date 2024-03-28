@@ -74,11 +74,11 @@ export const router = trpcRouter({
             world: null | {
               worldId: string;
               worldName: string;
-              joinDatetime: string;
+              joinDate: Date;
             };
             tookPhotoList: {
               photoPath: string;
-              tookDatetime: string;
+              tookDate: Date;
             }[];
           }[];
       error: null | {
@@ -96,12 +96,12 @@ export const router = trpcRouter({
           world: obj.world
             ? {
                 ...obj.world,
-                joinDatetime: obj.world.joinDatetime.toISOString(),
+                joinDate: obj.world.joinDatetime,
               }
             : null,
           tookPhotoList: obj.tookPhotoList.map((tookPhoto) => ({
             ...tookPhoto,
-            tookDatetime: tookPhoto.tookDatetime.toISOString(),
+            tookDate: tookPhoto.tookDatetime,
           })),
         }));
       },

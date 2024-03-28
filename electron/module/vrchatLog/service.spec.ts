@@ -6,13 +6,8 @@ describe('removeAdjacentDuplicateWorldEntries', () => {
     worldId: string,
     worldName: string,
     joinDatetime: Date,
-  ) => ({
-    year: joinDatetime.getFullYear().toString(),
-    month: joinDatetime.getMonth().toString(),
-    day: joinDatetime.getDate().toString(),
-    hour: joinDatetime.getHours().toString(),
-    minute: joinDatetime.getMinutes().toString(),
-    second: joinDatetime.getSeconds().toString(),
+  ): Parameters<typeof removeAdjacentDuplicateWorldEntries>[0][0] => ({
+    date: joinDatetime,
     worldId: `wrld_${worldId}` as WorldId,
     worldName,
   });

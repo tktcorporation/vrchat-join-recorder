@@ -72,11 +72,7 @@ const getWorldJoinInfoWithPhotoPath =
       return {
         worldId: info.worldId,
         worldName: info.worldName,
-        joinDatetime: datefns.parse(
-          `${info.year}-${info.month}-${info.day} ${info.hour}:${info.minute}:${info.second}`,
-          'yyyy-MM-dd HH:mm:ss',
-          new Date(),
-        ),
+        joinDatetime: info.date,
       };
     });
     log.debug(`worldJoinInfoList len ${worldJoinInfoList.length}`);
@@ -129,11 +125,7 @@ const getWorldJoinInfoWithPhotoPath =
         ...photoPathListResult.value.map((photo) => {
           return {
             path: photo.path,
-            tookDatetime: datefns.parse(
-              `${photo.info.date.year}-${photo.info.date.month}-${photo.info.date.day} ${photo.info.time.hour}:${photo.info.time.minute}:${photo.info.time.second}`,
-              'yyyy-MM-dd HH:mm:ss',
-              new Date(),
-            ),
+            tookDatetime: photo.info.date,
           };
         }),
       );
@@ -219,43 +211,16 @@ const setRemoveAdjacentDuplicateWorldEntriesFlag =
     );
   };
 
-type DateTime = {
-  date: {
-    year: string;
-    month: string;
-    day: string;
-  };
-  time: {
-    hour: string;
-    minute: string;
-    second: string;
-    millisecond: string;
-  };
-};
-const parseDateTime = (datetime: DateTime): Date => {
-  return datefns.parseISO(
-    `${datetime.date.year}-${datetime.date.month.padStart(
-      2,
-      '0',
-    )}-${datetime.date.day.padStart(2, '0')}T${datetime.time.hour.padStart(
-      2,
-      '0',
-    )}:${datetime.time.minute.padStart(2, '0')}:${datetime.time.second.padStart(
-      2,
-      '0',
-    )}.${datetime.time.millisecond}Z`,
-  );
-};
 type PhotoOrJoinImgInfo =
   | {
       type: 'PHOTO';
-      datetime: DateTime;
+      date: Date;
       path: string;
       worldId: null;
     }
   | {
       type: 'JOIN';
-      datetime: DateTime;
+      date: Date;
       path: string;
       worldId: string;
     };
@@ -291,10 +256,10 @@ const getVRChatPhotoWithWorldIdAndDate =
         if (parseResult.isErr()) {
           return null;
         }
-        const { date, time } = parseResult.value;
+        const { date } = parseResult.value;
         return {
           type: 'PHOTO' as const,
-          datetime: { date, time },
+          date,
           path: item,
           worldId: null,
         };
@@ -305,10 +270,10 @@ const getVRChatPhotoWithWorldIdAndDate =
         if (parseResult.isErr()) {
           return null;
         }
-        const { date, time, worldId } = parseResult.value;
+        const { date, worldId } = parseResult.value;
         return {
           type: 'JOIN' as const,
-          datetime: { date, time },
+          date,
           path: item,
           worldId,
         };
@@ -354,8 +319,8 @@ const getVRChatJoinInfoWithVRChatPhotoList =
 
     // datetimeに基づいて時系列順にソート
     data.sort((a, b) => {
-      const aDatetime = parseDateTime(a.datetime);
-      const bDatetime = parseDateTime(b.datetime);
+      const aDatetime = a.date;
+      const bDatetime = b.date;
       return datefns.compareAsc(aDatetime, bDatetime);
     });
 
@@ -363,7 +328,7 @@ const getVRChatJoinInfoWithVRChatPhotoList =
 
     for (let i = 0; i < data.length; i += 1) {
       if (data[i].type === 'JOIN') {
-        const joinDatetime = parseDateTime(data[i].datetime);
+        const joinDatetime = data[i].date;
         const nextJoinIndex = data.findIndex(
           (item, index) => index > i && item.type === 'JOIN',
         );
@@ -372,7 +337,7 @@ const getVRChatJoinInfoWithVRChatPhotoList =
           .slice(i + 1, nextJoinIndex !== -1 ? nextJoinIndex : undefined)
           .filter((item) => item.type === 'PHOTO')
           .map((photo) => ({
-            datetime: parseDateTime(photo.datetime),
+            datetime: photo.date,
             path: photo.path,
           }));
 
@@ -395,7 +360,7 @@ const getVRChatJoinInfoWithVRChatPhotoList =
     const allPhoto = data
       .filter((item) => item.type === 'PHOTO')
       .map((photo) => ({
-        datetime: parseDateTime(photo.datetime),
+        datetime: photo.date,
         path: photo.path,
       }));
     const alreadyJoinedPhoto = joinData.flatMap((item) => item.photoList);

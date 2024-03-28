@@ -158,12 +158,11 @@ const getVRChatPhotoOnlyItemPathListByYearMonth = (props: {
     if (photoFileNameParseResult.isErr()) {
       return null;
     }
-    const { date, time, resolution, ext } = photoFileNameParseResult.value;
+    const { date, resolution, ext } = photoFileNameParseResult.value;
     return {
       path: itemPath,
       info: {
         date,
-        time,
         resolution,
         ext,
       },

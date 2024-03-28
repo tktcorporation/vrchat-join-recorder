@@ -4,11 +4,7 @@ import { generateTextPath } from './lib';
 
 interface Props {
   worldName: string;
-  date: {
-    year: number;
-    month: number;
-    day: number;
-  };
+  date: Date;
   exif: {
     // 撮影日
     dateTimeOriginal: Date;
@@ -74,7 +70,7 @@ const generateOGPImageBuffer = async ({
     ${
       date &&
       `<g transform="translate(70, 470)"> ${generateTextPath(
-        `${date.year}-${date.month}-${date.day}`,
+        datefns.format(date, 'yyyy-MM-dd'),
         1060,
         64,
         {

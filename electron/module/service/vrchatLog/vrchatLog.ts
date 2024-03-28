@@ -1,5 +1,6 @@
 import path from 'node:path';
 import readline from 'node:readline';
+import * as datefns from 'date-fns';
 import * as log from 'electron-log';
 import * as neverthrow from 'neverthrow';
 import { match } from 'ts-pattern';
@@ -13,12 +14,7 @@ import {
 
 type WorldId = `wrld_${string}`;
 interface WorldJoinLogInfo {
-  year: string;
-  month: string;
-  day: string;
-  hour: string;
-  minute: string;
-  second: string;
+  date: Date;
   worldId: WorldId;
   worldName: string;
 }
@@ -223,12 +219,17 @@ const extractWorldJoinInfoFromLogs = (
 
   if (foundWorldName) {
     return {
-      year,
-      month,
-      day,
-      hour,
-      minute,
-      second,
+      // year,
+      // month,
+      // day,
+      // hour,
+      // minute,
+      // second,
+      date: datefns.parse(
+        `${year}-${month}-${day} ${hour}:${minute}:${second}`,
+        'yyyy-MM-dd HH:mm:ss',
+        new Date(),
+      ),
       worldId,
       worldName: foundWorldName,
     };
@@ -259,16 +260,10 @@ const convertLogLinesToWorldJoinLogInfos = (
 const convertWorldJoinLogInfoToOneLine = (
   worldJoinLogInfo: WorldJoinLogInfo,
 ): JoinInfoFileName => {
-  const { year, month, day, hour, minute, second, worldId } = worldJoinLogInfo;
+  const { date, worldId } = worldJoinLogInfo;
   // output: VRChat_2023-10-08_00-03-00.000_wrld_6fecf18a-ab96-43f2-82dc-ccf79f17c34f
   return convertToJoinInfoFileName({
-    year,
-    month,
-    day,
-    hour,
-    minute,
-    second,
-    millisecond: '000',
+    date,
     worldId,
   });
 };
