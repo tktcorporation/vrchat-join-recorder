@@ -5,10 +5,6 @@ import { generateTextPath } from './lib';
 interface Props {
   worldName: string;
   date: Date;
-  exif: {
-    // 撮影日
-    dateTimeOriginal: Date;
-  };
   imageWidth?: number;
 }
 
@@ -19,7 +15,6 @@ interface Props {
 const generateOGPImageBuffer = async ({
   worldName,
   date,
-  exif,
   imageWidth,
 }: Props): Promise<Buffer> => {
   const title = worldName;
@@ -89,18 +84,15 @@ const generateOGPImageBuffer = async ({
     .withMetadata({
       exif: {
         IFD0: {
-          DateTime: datefns.format(
-            exif.dateTimeOriginal,
-            'yyyy-MM-dd HH:mm:ss',
-          ),
-          DateTimeDigitized: datefns.format(
-            exif.dateTimeOriginal,
-            'yyyy-MM-dd HH:mm:ss',
-          ),
-          DateTimeOriginal: datefns.format(
-            exif.dateTimeOriginal,
-            'yyyy-MM-dd HH:mm:ss',
-          ),
+          DateTime: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
+          DateTimeDigitized: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
+          DateTimeOriginal: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
+          // OffsetTime: '+09:00',
+          OffsetTime: datefns.format(date, 'xxx'),
+          OffsetTimeOriginal: datefns.format(date, 'xxx'),
+          OffsetTimeDigitized: datefns.format(date, 'xxx'),
+          // Description
+          Description: worldName,
           ImageDescription: worldName,
         },
       },

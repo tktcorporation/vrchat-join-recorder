@@ -157,9 +157,6 @@ const getToCreateMap =
         const contentImage = await generateOGPImageBuffer({
           worldName: info.worldName,
           date: info.date,
-          exif: {
-            dateTimeOriginal: info.date,
-          },
           imageWidth: props.imageWidth,
         });
         return {
