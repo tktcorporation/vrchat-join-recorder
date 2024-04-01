@@ -319,6 +319,14 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/@nodelib/fs.walk",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/@nodelib/fs.walk/LICENSE"
   },
+  "@photostructure/tz-lookup@10.0.0": {
+    "licenses": "CC0-1.0",
+    "repository": "https://github.com/photostructure/tz-lookup",
+    "publisher": "PhotoStructure, Inc.",
+    "email": "tzlookup@photostructure.com",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/@photostructure/tz-lookup",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/@photostructure/tz-lookup/LICENSE"
+  },
   "@radix-ui/number@1.0.1": {
     "licenses": "MIT",
     "repository": "https://github.com/radix-ui/primitives",
@@ -624,6 +632,12 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/@types/keyv",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/@types/keyv/LICENSE"
   },
+  "@types/luxon@3.4.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/@types/luxon",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/@types/luxon/LICENSE"
+  },
   "@types/node@18.18.5": {
     "licenses": "MIT",
     "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
@@ -765,6 +779,14 @@
     "email": "t.jameson.little@gmail.com",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/base64-js",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/base64-js/LICENSE"
+  },
+  "batch-cluster@13.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/photostructure/batch-cluster.js",
+    "publisher": "Matthew McEachen",
+    "email": "matthew-batchcluster@photostructure.com",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/batch-cluster",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/batch-cluster/LICENSE"
   },
   "binary-extensions@2.2.0": {
     "licenses": "MIT",
@@ -1266,6 +1288,22 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/matcher/node_modules/escape-string-regexp",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/matcher/node_modules/escape-string-regexp/license"
   },
+  "exiftool-vendored.pl@12.80.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mceachen/exiftool-vendored.pl",
+    "publisher": "Matthew McEachen",
+    "email": "matthew-exiftoolvendored@mceachen.org",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/exiftool-vendored.pl",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/exiftool-vendored.pl/LICENSE"
+  },
+  "exiftool-vendored@25.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/photostructure/exiftool-vendored.js",
+    "publisher": "Matthew McEachen",
+    "email": "matthew-exiftoolvendored@photostructure.com",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/exiftool-vendored",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/exiftool-vendored/LICENSE"
+  },
   "expand-template@2.0.3": {
     "licenses": "(MIT OR WTFPL)",
     "repository": "https://github.com/ralphtheninja/expand-template",
@@ -1543,6 +1581,14 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/hasown",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/hasown/LICENSE"
   },
+  "he@1.2.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mathiasbynens/he",
+    "publisher": "Mathias Bynens",
+    "url": "https://mathiasbynens.be/",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/he",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/he/LICENSE-MIT.txt"
+  },
   "http-cache-semantics@4.1.1": {
     "licenses": "BSD-2-Clause",
     "repository": "https://github.com/kornelski/http-cache-semantics",
@@ -1814,6 +1860,13 @@
     "publisher": "Eric Fennis",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/lucide-react",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/lucide-react/LICENSE"
+  },
+  "luxon@3.4.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/moment/luxon",
+    "publisher": "Isaac Cambron",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/luxon",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/luxon/LICENSE.md"
   },
   "matcher@3.0.0": {
     "licenses": "MIT",

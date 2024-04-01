@@ -147,29 +147,46 @@ const getToCreateMap =
     }
 
     // ファイルの作成
-    const toCreateMap: ({
-      info: vrchatLogService.WorldJoinLogInfo;
-      yearMonthPath: string;
-      fileName: string;
-      content: Buffer;
-    } | null)[] = await Promise.all(
+    const toCreateMap: (
+      | {
+          info: vrchatLogService.WorldJoinLogInfo;
+          yearMonthPath: string;
+          fileName: string;
+          content: Buffer;
+        }
+      | Error
+      | null
+    )[] = await Promise.all(
       worldJoinLogInfoList.value.map(async (info) => {
         const contentImage = await generateOGPImageBuffer({
           worldName: info.worldName,
           date: info.date,
           imageWidth: props.imageWidth,
         });
+        if (contentImage.isErr()) {
+          return contentImage.error;
+        }
         return {
           info,
           yearMonthPath: genYearMonthPath(props.vrchatPhotoDir, info),
           fileName: genfileName(info),
-          content: contentImage,
+          content: contentImage.value,
         };
       }),
     );
+    // error がある場合はエラーを返す
+    const error_list = toCreateMap.filter(
+      (map) => map instanceof Error,
+    ) as Error[];
+    if (error_list.length > 0) {
+      for (const error of error_list) {
+        log.error('error', error);
+      }
+      return neverthrow.err(error_list[0]);
+    }
     const filteredMap = toCreateMap.filter((map) => map !== null) as Exclude<
       (typeof toCreateMap)[number],
-      null
+      null | Error
     >[];
     return neverthrow.ok(filteredMap);
   };

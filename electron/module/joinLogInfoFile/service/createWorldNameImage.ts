@@ -1,5 +1,7 @@
 import * as datefns from 'date-fns';
+import * as neverthrow from 'neverthrow';
 import sharp from 'sharp';
+import * as exiftool from './../../lib/wrappedExifTool';
 import { generateTextPath } from './lib';
 
 interface Props {
@@ -16,7 +18,7 @@ const generateOGPImageBuffer = async ({
   worldName,
   date,
   imageWidth,
-}: Props): Promise<Buffer> => {
+}: Props): Promise<neverthrow.Result<Buffer, Error>> => {
   const title = worldName;
   // 縦横比率
   const aspectRatio = 1200 / 630;
@@ -78,29 +80,41 @@ const generateOGPImageBuffer = async ({
   </svg>`;
 
   // sharp: SVG画像をJPEG画像に変換
-  let file = sharp(Buffer.from(svg))
-    .jpeg()
-    // exif に撮影日のデータを記録
-    .withMetadata({
-      exif: {
-        IFD0: {
-          DateTime: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
-          DateTimeDigitized: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
-          DateTimeOriginal: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
-          // OffsetTime: '+09:00',
-          OffsetTime: datefns.format(date, 'xxx'),
-          OffsetTimeOriginal: datefns.format(date, 'xxx'),
-          OffsetTimeDigitized: datefns.format(date, 'xxx'),
-          // Description
-          Description: worldName,
-          ImageDescription: worldName,
-        },
-      },
-    });
+  let file = sharp(Buffer.from(svg)).jpeg();
+  // exif に撮影日のデータを記録
+  // .withMetadata({
+  //   exif: {
+  //     IFD0: {
+  //       DateTime: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
+  //       DateTimeDigitized: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
+  //       DateTimeOriginal: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
+  //       // OffsetTime: '+09:00',
+  //       OffsetTime: datefns.format(date, 'xxx'),
+  //       OffsetTimeOriginal: datefns.format(date, 'xxx'),
+  //       OffsetTimeDigitized: datefns.format(date, 'xxx'),
+  //       // Description
+  //       Description: worldName,
+  //       ImageDescription: worldName,
+  //     },
+  //   },
+  // });
   if (imageWidth) {
     file = file.resize(imageWidth);
   }
-  return file.toBuffer();
+  const svgBuffer = await file.toBuffer();
+
+  // set exif data
+  const result = await exiftool.setExifToBuffer(svgBuffer, {
+    description: worldName,
+    dateTimeOriginal: datefns.format(date, 'yyyy-MM-dd HH:mm:ss'),
+    timezoneOffset: datefns.format(date, 'xxx'),
+  });
+  if (result.isErr()) {
+    return neverthrow.err(
+      new Error('Failed to set exif data', { cause: result.error }),
+    );
+  }
+  return neverthrow.ok(result.value);
 };
 
 export { generateOGPImageBuffer };

@@ -5,7 +5,13 @@ import * as opentype from 'opentype.js';
 
 const getFont = () => {
   // 正しいフォントファイルのパスを指定する 'assets/NotoSansCJKjp-Regular.ttf';
-  const appPath = app.isPackaged ? process.resourcesPath : app.getAppPath();
+  const appPath =
+    app !== undefined
+      ? app.isPackaged
+        ? process.resourcesPath
+        : app.getAppPath()
+      : '';
+
   const fontfile = path.join(appPath, 'assets', 'NotoSansCJKjp-Regular.ttf');
 
   // フォントの読み込み、ローカルのフォントを読み込む
