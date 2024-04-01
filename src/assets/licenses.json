@@ -1412,6 +1412,15 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/sucrase/node_modules/glob",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/sucrase/node_modules/glob/LICENSE"
   },
+  "glob@7.2.3": {
+    "licenses": "ISC",
+    "repository": "https://github.com/isaacs/node-glob",
+    "publisher": "Isaac Z. Schlueter",
+    "email": "i@izs.me",
+    "url": "http://blog.izs.me/",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/glob",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/glob/LICENSE"
+  },
   "global-agent@3.0.0": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/gajus/global-agent",
@@ -2320,6 +2329,15 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/reusify",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/reusify/LICENSE"
   },
+  "rimraf@3.0.2": {
+    "licenses": "ISC",
+    "repository": "https://github.com/isaacs/rimraf",
+    "publisher": "Isaac Z. Schlueter",
+    "email": "i@izs.me",
+    "url": "http://blog.izs.me/",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tmp/node_modules/rimraf",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tmp/node_modules/rimraf/LICENSE"
+  },
   "roarr@2.15.4": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/gajus/roarr",
@@ -2525,6 +2543,22 @@
     "email": "devongovett@gmail.com",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tiny-inflate",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tiny-inflate/LICENSE"
+  },
+  "tmp-promise@3.0.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/benjamingr/tmp-promise",
+    "publisher": "Benjamin Gruenbaum and Collaborators.",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tmp-promise",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tmp-promise/README.md"
+  },
+  "tmp@0.2.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/raszi/node-tmp",
+    "publisher": "KARASZI István",
+    "email": "github@spam.raszi.hu",
+    "url": "http://raszi.hu/",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tmp",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tmp/LICENSE"
   },
   "to-fast-properties@2.0.0": {
     "licenses": "MIT",
