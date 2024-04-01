@@ -262,6 +262,22 @@
     "repository": "https://github.com/tailwindlabs/heroicons",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/@heroicons/react"
   },
+  "@img/sharp-libvips-linux-x64@1.0.2": {
+    "licenses": "LGPL-3.0-or-later",
+    "repository": "https://github.com/lovell/sharp-libvips",
+    "publisher": "Lovell Fuller",
+    "email": "npm@lovell.info",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/@img/sharp-libvips-linux-x64",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/@img/sharp-libvips-linux-x64/README.md"
+  },
+  "@img/sharp-linux-x64@0.33.3": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/lovell/sharp",
+    "publisher": "Lovell Fuller",
+    "email": "npm@lovell.info",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/@img/sharp-linux-x64",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/@img/sharp-linux-x64/LICENSE"
+  },
   "@jridgewell/gen-mapping@0.3.3": {
     "licenses": "MIT",
     "repository": "https://github.com/jridgewell/gen-mapping",
@@ -755,14 +771,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/atomically",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/atomically/LICENSE"
   },
-  "b4a@1.6.4": {
-    "licenses": "ISC",
-    "repository": "https://github.com/holepunchto/b4a",
-    "publisher": "Kasper Isager Dalsgarð",
-    "email": "kasper@funktionel.co",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/b4a",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/b4a/LICENSE"
-  },
   "balanced-match@1.0.2": {
     "licenses": "MIT",
     "repository": "https://github.com/juliangruber/balanced-match",
@@ -771,14 +779,6 @@
     "url": "http://juliangruber.com",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/balanced-match",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/balanced-match/LICENSE.md"
-  },
-  "base64-js@1.5.1": {
-    "licenses": "MIT",
-    "repository": "https://github.com/beatgammit/base64-js",
-    "publisher": "T. Jameson Little",
-    "email": "t.jameson.little@gmail.com",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/base64-js",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/base64-js/LICENSE"
   },
   "batch-cluster@13.0.0": {
     "licenses": "MIT",
@@ -796,12 +796,6 @@
     "url": "sindresorhus.com",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/binary-extensions",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/binary-extensions/license"
-  },
-  "bl@4.1.0": {
-    "licenses": "MIT",
-    "repository": "https://github.com/rvagg/bl",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/bl",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/bl/LICENSE.md"
   },
   "boolean@3.2.0": {
     "licenses": "MIT",
@@ -841,15 +835,6 @@
     "email": "brianloveswords@gmail.com",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/buffer-crc32",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/buffer-crc32/LICENSE"
-  },
-  "buffer@5.7.1": {
-    "licenses": "MIT",
-    "repository": "https://github.com/feross/buffer",
-    "publisher": "Feross Aboukhadijeh",
-    "email": "feross@feross.org",
-    "url": "https://feross.org",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/buffer",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/buffer/LICENSE"
   },
   "cacheable-lookup@5.0.4": {
     "licenses": "MIT",
@@ -898,15 +883,6 @@
     "url": "https://paulmillr.com",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/chokidar",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/chokidar/LICENSE"
-  },
-  "chownr@1.1.4": {
-    "licenses": "ISC",
-    "repository": "https://github.com/isaacs/chownr",
-    "publisher": "Isaac Z. Schlueter",
-    "email": "i@izs.me",
-    "url": "http://blog.izs.me/",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tar-fs/node_modules/chownr",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tar-fs/node_modules/chownr/LICENSE"
   },
   "class-variance-authority@0.7.0": {
     "licenses": "Apache-2.0",
@@ -1087,14 +1063,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/decompress-response",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/decompress-response/license"
   },
-  "deep-extend@0.6.0": {
-    "licenses": "MIT",
-    "repository": "https://github.com/unclechu/node-deep-extend",
-    "publisher": "Viacheslav Lotsmanov",
-    "email": "lotsmanov89@gmail.com",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/deep-extend",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/deep-extend/LICENSE"
-  },
   "defer-to-connect@2.0.1": {
     "licenses": "MIT",
     "repository": "https://github.com/szmarczak/defer-to-connect",
@@ -1118,13 +1086,13 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/define-properties",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/define-properties/LICENSE"
   },
-  "detect-libc@2.0.2": {
+  "detect-libc@2.0.3": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/lovell/detect-libc",
     "publisher": "Lovell Fuller",
     "email": "npm@lovell.info",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/detect-libc",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/detect-libc/LICENSE"
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp/node_modules/detect-libc",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp/node_modules/detect-libc/LICENSE"
   },
   "detect-node-es@1.1.0": {
     "licenses": "MIT",
@@ -1304,14 +1272,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/exiftool-vendored",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/exiftool-vendored/LICENSE"
   },
-  "expand-template@2.0.3": {
-    "licenses": "(MIT OR WTFPL)",
-    "repository": "https://github.com/ralphtheninja/expand-template",
-    "publisher": "LM",
-    "email": "ralphtheninja@riseup.net",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/expand-template",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/expand-template/LICENSE"
-  },
   "extract-zip@2.0.1": {
     "licenses": "BSD-2-Clause",
     "repository": "https://github.com/maxogden/extract-zip",
@@ -1325,14 +1285,6 @@
     "publisher": "Evgeny Poberezkin",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/fast-deep-equal",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/fast-deep-equal/LICENSE"
-  },
-  "fast-fifo@1.3.2": {
-    "licenses": "MIT",
-    "repository": "https://github.com/mafintosh/fast-fifo",
-    "publisher": "Mathias Buus",
-    "url": "@mafintosh",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/fast-fifo",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/fast-fifo/LICENSE"
   },
   "fast-glob@3.3.1": {
     "licenses": "MIT",
@@ -1374,14 +1326,6 @@
     "url": "sindresorhus.com",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/pkg-up/node_modules/find-up",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/pkg-up/node_modules/find-up/license"
-  },
-  "fs-constants@1.0.0": {
-    "licenses": "MIT",
-    "repository": "https://github.com/mafintosh/fs-constants",
-    "publisher": "Mathias Buus",
-    "url": "@mafintosh",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/fs-constants",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/fs-constants/LICENSE"
   },
   "fs-extra@8.1.0": {
     "licenses": "MIT",
@@ -1440,15 +1384,6 @@
     "url": "https://sindresorhus.com",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/get-stream",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/get-stream/license"
-  },
-  "github-from-package@0.0.0": {
-    "licenses": "MIT",
-    "repository": "https://github.com/substack/github-from-package",
-    "publisher": "James Halliday",
-    "email": "mail@substack.net",
-    "url": "http://substack.net",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/github-from-package",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/github-from-package/LICENSE"
   },
   "glob-parent@5.1.2": {
     "licenses": "ISC",
@@ -1605,15 +1540,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/http2-wrapper",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/http2-wrapper/LICENSE"
   },
-  "ieee754@1.2.1": {
-    "licenses": "BSD-3-Clause",
-    "repository": "https://github.com/feross/ieee754",
-    "publisher": "Feross Aboukhadijeh",
-    "email": "feross@feross.org",
-    "url": "https://feross.org",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/ieee754",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/ieee754/LICENSE"
-  },
   "inflight@1.0.6": {
     "licenses": "ISC",
     "repository": "https://github.com/npm/inflight",
@@ -1628,15 +1554,6 @@
     "repository": "https://github.com/isaacs/inherits",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/inherits",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/inherits/LICENSE"
-  },
-  "ini@1.3.8": {
-    "licenses": "ISC",
-    "repository": "https://github.com/isaacs/ini",
-    "publisher": "Isaac Z. Schlueter",
-    "email": "i@izs.me",
-    "url": "http://blog.izs.me/",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/ini",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/ini/LICENSE"
   },
   "invariant@2.2.4": {
     "licenses": "MIT",
@@ -1936,23 +1853,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/minimatch",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/minimatch/LICENSE"
   },
-  "minimist@1.2.8": {
-    "licenses": "MIT",
-    "repository": "https://github.com/minimistjs/minimist",
-    "publisher": "James Halliday",
-    "email": "mail@substack.net",
-    "url": "http://substack.net",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/minimist",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/minimist/LICENSE"
-  },
-  "mkdirp-classic@0.5.3": {
-    "licenses": "MIT",
-    "repository": "https://github.com/mafintosh/mkdirp-classic",
-    "publisher": "Mathias Buus",
-    "url": "@mafintosh",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/mkdirp-classic",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/mkdirp-classic/LICENSE"
-  },
   "ms@2.1.2": {
     "licenses": "MIT",
     "repository": "https://github.com/zeit/ms",
@@ -1976,32 +1876,12 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/nanoid",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/nanoid/LICENSE"
   },
-  "napi-build-utils@1.0.2": {
-    "licenses": "MIT",
-    "repository": "https://github.com/inspiredware/napi-build-utils",
-    "publisher": "Jim Schlight",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/napi-build-utils",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/napi-build-utils/LICENSE"
-  },
   "neverthrow@6.1.0": {
     "licenses": "MIT",
     "repository": "https://github.com/supermacro/neverthrow",
     "publisher": "Giorgio Delgado",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/neverthrow",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/neverthrow/LICENSE"
-  },
-  "node-abi@3.51.0": {
-    "licenses": "MIT",
-    "repository": "https://github.com/electron/node-abi",
-    "publisher": "Lukas Geiger",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/node-abi",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/node-abi/LICENSE"
-  },
-  "node-addon-api@6.1.0": {
-    "licenses": "MIT",
-    "repository": "https://github.com/nodejs/node-addon-api",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/node-addon-api",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/node-addon-api/LICENSE.md"
   },
   "node-releases@2.0.13": {
     "licenses": "MIT",
@@ -2254,14 +2134,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/postcss",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/postcss/LICENSE"
   },
-  "prebuild-install@7.1.1": {
-    "licenses": "MIT",
-    "repository": "https://github.com/prebuild/prebuild-install",
-    "publisher": "Mathias Buus",
-    "url": "@mafintosh",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/prebuild-install",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/prebuild-install/LICENSE"
-  },
   "progress@2.0.3": {
     "licenses": "MIT",
     "repository": "https://github.com/visionmedia/node-progress",
@@ -2295,14 +2167,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/queue-microtask",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/queue-microtask/LICENSE"
   },
-  "queue-tick@1.0.1": {
-    "licenses": "MIT",
-    "repository": "https://github.com/mafintosh/queue-tick",
-    "publisher": "Mathias Buus",
-    "url": "@mafintosh",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/queue-tick",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/queue-tick/LICENSE"
-  },
   "quick-lru@5.1.1": {
     "licenses": "MIT",
     "repository": "https://github.com/sindresorhus/quick-lru",
@@ -2311,15 +2175,6 @@
     "url": "https://sindresorhus.com",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/quick-lru",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/quick-lru/license"
-  },
-  "rc@1.2.8": {
-    "licenses": "(BSD-2-Clause OR MIT OR Apache-2.0)",
-    "repository": "https://github.com/dominictarr/rc",
-    "publisher": "Dominic Tarr",
-    "email": "dominic.tarr@gmail.com",
-    "url": "dominictarr.com",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/rc",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/rc/LICENSE.APACHE2"
   },
   "react-dom@18.2.0": {
     "licenses": "MIT",
@@ -2408,12 +2263,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/read-cache",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/read-cache/LICENSE"
   },
-  "readable-stream@3.6.2": {
-    "licenses": "MIT",
-    "repository": "https://github.com/nodejs/readable-stream",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/readable-stream",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/readable-stream/LICENSE"
-  },
   "readdirp@3.6.0": {
     "licenses": "MIT",
     "repository": "https://github.com/paulmillr/readdirp",
@@ -2496,15 +2345,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/run-parallel",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/run-parallel/LICENSE"
   },
-  "safe-buffer@5.2.1": {
-    "licenses": "MIT",
-    "repository": "https://github.com/feross/safe-buffer",
-    "publisher": "Feross Aboukhadijeh",
-    "email": "feross@feross.org",
-    "url": "https://feross.org",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/safe-buffer",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/safe-buffer/LICENSE"
-  },
   "scheduler@0.23.0": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/react",
@@ -2534,6 +2374,13 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/semver",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/semver/LICENSE"
   },
+  "semver@7.6.0": {
+    "licenses": "ISC",
+    "repository": "https://github.com/npm/node-semver",
+    "publisher": "GitHub Inc.",
+    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp/node_modules/semver",
+    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp/node_modules/semver/LICENSE"
+  },
   "serialize-error@7.0.1": {
     "licenses": "MIT",
     "repository": "https://github.com/sindresorhus/serialize-error",
@@ -2552,31 +2399,13 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/serialize-error",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/serialize-error/license"
   },
-  "sharp@0.32.6": {
+  "sharp@0.33.3": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/lovell/sharp",
     "publisher": "Lovell Fuller",
     "email": "npm@lovell.info",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp/LICENSE"
-  },
-  "simple-concat@1.0.1": {
-    "licenses": "MIT",
-    "repository": "https://github.com/feross/simple-concat",
-    "publisher": "Feross Aboukhadijeh",
-    "email": "feross@feross.org",
-    "url": "https://feross.org",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/simple-concat",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/simple-concat/LICENSE"
-  },
-  "simple-get@4.0.1": {
-    "licenses": "MIT",
-    "repository": "https://github.com/feross/simple-get",
-    "publisher": "Feross Aboukhadijeh",
-    "email": "feross@feross.org",
-    "url": "https://feross.org",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/simple-get",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/simple-get/LICENSE"
   },
   "simple-swizzle@0.2.2": {
     "licenses": "MIT",
@@ -2602,14 +2431,6 @@
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/sprintf-js",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/sprintf-js/LICENSE"
   },
-  "streamx@2.15.2": {
-    "licenses": "MIT",
-    "repository": "https://github.com/mafintosh/streamx",
-    "publisher": "Mathias Buus",
-    "url": "@mafintosh",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/streamx",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/streamx/LICENSE"
-  },
   "string.prototype.codepointat@0.2.1": {
     "licenses": "MIT",
     "repository": "https://github.com/mathiasbynens/String.prototype.codePointAt",
@@ -2617,21 +2438,6 @@
     "url": "https://mathiasbynens.be/",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/string.prototype.codepointat",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/string.prototype.codepointat/LICENSE-MIT.txt"
-  },
-  "string_decoder@1.3.0": {
-    "licenses": "MIT",
-    "repository": "https://github.com/nodejs/string_decoder",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/string_decoder",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/string_decoder/LICENSE"
-  },
-  "strip-json-comments@2.0.1": {
-    "licenses": "MIT",
-    "repository": "https://github.com/sindresorhus/strip-json-comments",
-    "publisher": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/strip-json-comments",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/strip-json-comments/license"
   },
   "sucrase@3.34.0": {
     "licenses": "MIT",
@@ -2693,36 +2499,6 @@
     "repository": "https://github.com/tailwindlabs/tailwindcss",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tailwindcss",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tailwindcss/LICENSE"
-  },
-  "tar-fs@2.1.1": {
-    "licenses": "MIT",
-    "repository": "https://github.com/mafintosh/tar-fs",
-    "publisher": "Mathias Buus",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tar-fs",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tar-fs/LICENSE"
-  },
-  "tar-fs@3.0.4": {
-    "licenses": "MIT",
-    "repository": "https://github.com/mafintosh/tar-fs",
-    "publisher": "Mathias Buus",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp/node_modules/tar-fs",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp/node_modules/tar-fs/LICENSE"
-  },
-  "tar-stream@2.2.0": {
-    "licenses": "MIT",
-    "repository": "https://github.com/mafintosh/tar-stream",
-    "publisher": "Mathias Buus",
-    "email": "mathiasbuus@gmail.com",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tar-stream",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tar-stream/LICENSE"
-  },
-  "tar-stream@3.1.6": {
-    "licenses": "MIT",
-    "repository": "https://github.com/mafintosh/tar-stream",
-    "publisher": "Mathias Buus",
-    "email": "mathiasbuus@gmail.com",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp/node_modules/tar-stream",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/sharp/node_modules/tar-stream/LICENSE"
   },
   "thenify-all@1.6.0": {
     "licenses": "MIT",
@@ -2787,15 +2563,6 @@
     "publisher": "Microsoft Corp.",
     "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tslib",
     "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tslib/LICENSE.txt"
-  },
-  "tunnel-agent@0.6.0": {
-    "licenses": "Apache-2.0",
-    "repository": "https://github.com/mikeal/tunnel-agent",
-    "publisher": "Mikeal Rogers",
-    "email": "mikeal.rogers@gmail.com",
-    "url": "http://www.futurealoof.com",
-    "path": "/workspaces/add-world-name-to-vrc-photo/node_modules/tunnel-agent",
-    "licenseFile": "/workspaces/add-world-name-to-vrc-photo/node_modules/tunnel-agent/LICENSE"
   },
   "type-fest@0.13.1": {
     "licenses": "(MIT OR CC0-1.0)",
