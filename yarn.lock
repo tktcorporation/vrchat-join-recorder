@@ -1246,6 +1246,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@photostructure/tz-lookup@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@photostructure/tz-lookup@npm:10.0.0"
+  checksum: 10c0/a985bdc498233faa33bdf5c13e7c3b8360deee482a1aef509266ce778a8acfde529943b9a0c769be81712029f7998ce586625ccf0f4319d1ceadaf031dea0b07
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -2331,6 +2338,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/luxon@npm:^3.4.2":
+  version: 3.4.2
+  resolution: "@types/luxon@npm:3.4.2"
+  checksum: 10c0/d835467de3daf7e17ba78b50bb5a14efd94272439ca067990d71332a54b311544459c69623eddd243b511b28d70194c9591a9ee8cf9c038962c965f991affd7e
+  languageName: node
+  linkType: hard
+
 "@types/ms@npm:*":
   version: 0.7.32
   resolution: "@types/ms@npm:0.7.32"
@@ -2434,6 +2448,13 @@ __metadata:
   version: 2.0.3
   resolution: "@types/stack-utils@npm:2.0.3"
   checksum: 10c0/1f4658385ae936330581bcb8aa3a066df03867d90281cdf89cc356d404bd6579be0f11902304e1f775d92df22c6dd761d4451c804b0a4fba973e06211e9bd77c
+  languageName: node
+  linkType: hard
+
+"@types/tmp@npm:^0.2.6":
+  version: 0.2.6
+  resolution: "@types/tmp@npm:0.2.6"
+  checksum: 10c0/a11bfa2cd8eaa6c5d62f62a3569192d7a2c28efdc5c17af0b0551db85816b2afc8156f3ca15ac76f0b142ae1403f04f44279871424233a1f3390b2e5fc828cd0
   languageName: node
   linkType: hard
 
@@ -2924,6 +2945,13 @@ __metadata:
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: 10c0/f23823513b63173a001030fae4f2dabe283b99a9d324ade3ad3d148e218134676f1ee8568c877cd79ec1c53158dcf2d2ba527a97c606618928ba99dd930102bf
+  languageName: node
+  linkType: hard
+
+"batch-cluster@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "batch-cluster@npm:13.0.0"
+  checksum: 10c0/d48735c64328440400298ab0259409102cf7538465e337900a360befe75df3019c43523bb7c718caed4f2df0506c2dbf2865873c085d4fe71974727252c6d6a0
   languageName: node
   linkType: hard
 
@@ -4149,6 +4177,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"exiftool-vendored.exe@npm:12.80.0":
+  version: 12.80.0
+  resolution: "exiftool-vendored.exe@npm:12.80.0"
+  conditions: os=win32
+  languageName: node
+  linkType: hard
+
+"exiftool-vendored.pl@npm:12.80.0":
+  version: 12.80.0
+  resolution: "exiftool-vendored.pl@npm:12.80.0"
+  conditions: "!os=win32"
+  languageName: node
+  linkType: hard
+
+"exiftool-vendored@npm:^25.1.0":
+  version: 25.1.0
+  resolution: "exiftool-vendored@npm:25.1.0"
+  dependencies:
+    "@photostructure/tz-lookup": "npm:^10.0.0"
+    "@types/luxon": "npm:^3.4.2"
+    batch-cluster: "npm:^13.0.0"
+    exiftool-vendored.exe: "npm:12.80.0"
+    exiftool-vendored.pl: "npm:12.80.0"
+    he: "npm:^1.2.0"
+    luxon: "npm:^3.4.4"
+  dependenciesMeta:
+    exiftool-vendored.exe:
+      optional: true
+    exiftool-vendored.pl:
+      optional: true
+  checksum: 10c0/e4ed240a64bf956553ce268c9216b6b5f9dc7f6081b59655849fe50d2c92bac3940d11446ac134fb1b4bbb4d17b8780dc8846bbdeed4378ac1dc17d85ed629b5
+  languageName: node
+  linkType: hard
+
 "exit@npm:^0.1.2":
   version: 0.1.2
   resolution: "exit@npm:0.1.2"
@@ -4692,6 +4754,15 @@ __metadata:
   dependencies:
     function-bind: "npm:^1.1.2"
   checksum: 10c0/5d415b114f410661208c95e7ab4879f1cc2765b8daceff4dc8718317d1cb7b9ffa7c5d1eafd9a4389c9aab7445d6ea88e05f3096cb1e529618b55304956b87fc
+  languageName: node
+  linkType: hard
+
+"he@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "he@npm:1.2.0"
+  bin:
+    he: bin/he
+  checksum: 10c0/a27d478befe3c8192f006cdd0639a66798979dfa6e2125c6ac582a19a5ebfec62ad83e8382e6036170d873f46e4536a7e795bf8b95bf7c247f4cc0825ccc8c17
   languageName: node
   linkType: hard
 
@@ -5829,6 +5900,13 @@ __metadata:
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0
   checksum: 10c0/6a29a213d6ef27fc23aef54838255f73d64b0f542da0f61cd21d3150a74aee3c366805c9ebdfefe0dfaa8b35bf8af27789d6d43109588c3f322b978cedd81926
+  languageName: node
+  linkType: hard
+
+"luxon@npm:^3.4.4":
+  version: 3.4.4
+  resolution: "luxon@npm:3.4.4"
+  checksum: 10c0/02e26a0b039c11fd5b75e1d734c8f0332c95510f6a514a9a0991023e43fb233884da02d7f966823ffb230632a733fc86d4a4b1e63c3fbe00058b8ee0f8c728af
   languageName: node
   linkType: hard
 
@@ -8374,6 +8452,7 @@ __metadata:
     "@types/react": "npm:^18.2.33"
     "@types/react-dom": "npm:^18.2.14"
     "@types/sharp": "npm:^0.32.0"
+    "@types/tmp": "npm:^0.2.6"
     "@vitejs/plugin-react": "npm:^4.1.0"
     "@welldone-software/why-did-you-render": "npm:^8.0.1"
     autoprefixer: "npm:^10.4.16"
@@ -8390,6 +8469,7 @@ __metadata:
     electron-store: "npm:^8.1.0"
     electron-trpc: "npm:^0.5.2"
     electron-unhandled: "npm:^4.0.1"
+    exiftool-vendored: "npm:^25.1.0"
     jest: "npm:^29.7.0"
     license-checker: "npm:^25.0.1"
     lucide-react: "npm:^0.292.0"

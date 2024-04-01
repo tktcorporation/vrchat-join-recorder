@@ -99,3 +99,15 @@ export const createReadStream = (
 ): fs.ReadStream => {
   return fs.createReadStream(filePath, options);
 };
+
+export const unlinkSafe = (path: string): Result<void, Error> => {
+  try {
+    fs.unlinkSync(path);
+    return ok(undefined);
+  } catch (e) {
+    if (e instanceof Error) {
+      return err(e);
+    }
+    throw e;
+  }
+};
