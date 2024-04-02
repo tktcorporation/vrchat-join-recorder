@@ -47,10 +47,27 @@ export const router = trpcRouter({
     const logFilesDir = service.getVRChatLogFilesDir();
     return logFilesDir;
   }),
-  getVRChatPhotoDir: procedure.query(async () => {
-    const vrchatPhotoDir = service.getVRChatPhotoDir();
-    return vrchatPhotoDir;
-  }),
+  getVRChatPhotoDir: procedure.query(
+    async (): Promise<{
+      storedPath: string | null;
+      path: string;
+      error: null | 'photoDirReadError' | 'photoYearMonthDirsNotFound';
+    }> => {
+      const vrchatPhotoDirResult = service.getVRChatPhotoDir();
+      if (vrchatPhotoDirResult.isErr()) {
+        return {
+          storedPath: vrchatPhotoDirResult.error.storedPath,
+          path: vrchatPhotoDirResult.error.path,
+          error: vrchatPhotoDirResult.error.error,
+        };
+      }
+      return {
+        storedPath: vrchatPhotoDirResult.value.storedPath,
+        path: vrchatPhotoDirResult.value.path,
+        error: null,
+      };
+    },
+  ),
   getStatusToUseVRChatLogFilesDir: procedure.query(async () => {
     const vrchatLogFilesDir = service.getVRChatLogFilesDir();
     let status:

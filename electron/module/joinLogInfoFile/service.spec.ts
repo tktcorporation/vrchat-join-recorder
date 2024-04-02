@@ -1,13 +1,13 @@
-import { groupingPhotoListByWorldJoinInfo } from './service';
+import { groupingPhotoListToPreviewByWorldJoinInfo } from './service';
 
-describe('groupingPhotoListByWorldJoinInfo', () => {
+describe('groupingPhotoListToPreviewByWorldJoinInfo', () => {
   it('should be defined', () => {
-    const result = groupingPhotoListByWorldJoinInfo([], []);
+    const result = groupingPhotoListToPreviewByWorldJoinInfo([], []);
     expect(result).toStrictEqual([]);
   });
 
   it('join情報のみだった場合', () => {
-    const result = groupingPhotoListByWorldJoinInfo(
+    const result = groupingPhotoListToPreviewByWorldJoinInfo(
       [
         {
           worldId: 'wrld_1234',
@@ -30,7 +30,7 @@ describe('groupingPhotoListByWorldJoinInfo', () => {
   });
 
   it('photo情報のみだった場合', () => {
-    const result = groupingPhotoListByWorldJoinInfo(
+    const result = groupingPhotoListToPreviewByWorldJoinInfo(
       [],
       [
         {
@@ -43,25 +43,11 @@ describe('groupingPhotoListByWorldJoinInfo', () => {
         },
       ],
     );
-    expect(result).toStrictEqual([
-      {
-        world: null,
-        tookPhotoList: [
-          {
-            photoPath: 'photoPath-1',
-            tookDatetime: new Date('2020-01-02'),
-          },
-          {
-            photoPath: 'photoPath-2',
-            tookDatetime: new Date('2020-01-03'),
-          },
-        ],
-      },
-    ]);
+    expect(result).toStrictEqual([]);
   });
 
   it('joinの前にphoto情報があった場合', () => {
-    const result = groupingPhotoListByWorldJoinInfo(
+    const result = groupingPhotoListToPreviewByWorldJoinInfo(
       [
         {
           worldId: 'wrld_1234',
@@ -89,24 +75,11 @@ describe('groupingPhotoListByWorldJoinInfo', () => {
         },
         tookPhotoList: [],
       },
-      {
-        world: null,
-        tookPhotoList: [
-          {
-            photoPath: 'photoPath-1',
-            tookDatetime: new Date('2020-01-02'),
-          },
-          {
-            photoPath: 'photoPath-2',
-            tookDatetime: new Date('2020-01-01'),
-          },
-        ],
-      },
     ]);
   });
 
   it('1対1でグルーピング', () => {
-    const result = groupingPhotoListByWorldJoinInfo(
+    const result = groupingPhotoListToPreviewByWorldJoinInfo(
       [
         {
           worldId: 'wrld_1234',
@@ -139,7 +112,7 @@ describe('groupingPhotoListByWorldJoinInfo', () => {
   });
 
   it('1対2でグルーピング', () => {
-    const result = groupingPhotoListByWorldJoinInfo(
+    const result = groupingPhotoListToPreviewByWorldJoinInfo(
       [
         {
           worldId: 'wrld_1234',
@@ -179,7 +152,7 @@ describe('groupingPhotoListByWorldJoinInfo', () => {
     ]);
   });
   it('1:2, 1:2 でグルーピング', () => {
-    const result = groupingPhotoListByWorldJoinInfo(
+    const result = groupingPhotoListToPreviewByWorldJoinInfo(
       [
         {
           worldId: 'wrld_1234',

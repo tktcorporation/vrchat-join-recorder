@@ -3,20 +3,20 @@ import * as neverthrow from 'neverthrow';
 import path from 'node:path';
 import * as datefns from 'date-fns';
 import * as log from 'electron-log';
+import { match } from 'ts-pattern';
 import * as infoFileService from './joinLogInfoFile/service';
-import { getToCreateWorldJoinLogInfos } from './joinLogInfoFile/service';
 import { YearMonthPathNotFoundError } from './service/error';
 import { PhotoFileNameSchema, parsePhotoFileName } from './service/type';
 import * as utilsService from './service/utilsService';
 import type VRChatLogFileError from './service/vrchatLog/error';
 import * as vrchatLogService from './service/vrchatLog/vrchatLog';
-import type VRChatPhotoFileError from './service/vrchatPhoto/error';
-import * as vrchatPhotoService from './service/vrchatPhoto/service';
 import type { getSettingStore } from './settingStore';
 import {
   JoinInfoFileNameSchema,
   parseJoinInfoFileName,
 } from './vrchatLog/type';
+import VRChatPhotoFileError from './vrchatPhoto/error';
+import * as vrchatPhotoService from './vrchatPhoto/service';
 
 const getVRChatLogFilesDir =
   (settingStore: ReturnType<typeof getSettingStore>) =>
@@ -38,6 +38,7 @@ const getVRChatPhotoDir =
   };
 
 /**
+ * 残っている VRChat log から取得できる範囲で
  * どの写真がどこで撮られたのかのデータを返す
  */
 const getWorldJoinInfoWithPhotoPath =
@@ -58,17 +59,28 @@ const getWorldJoinInfoWithPhotoPath =
       YearMonthPathNotFoundError | VRChatLogFileError | VRChatPhotoFileError
     >
   > => {
-    const convertWorldJoinLogInfoListResult =
-      await getToCreateWorldJoinLogInfos(settingStore)();
-    if (convertWorldJoinLogInfoListResult.isErr()) {
-      return neverthrow.err(convertWorldJoinLogInfoListResult.error);
+    const vrchatPhotoDirResult = getVRChatPhotoDir(settingStore)();
+    if (vrchatPhotoDirResult.isErr()) {
+      return match(vrchatPhotoDirResult.error.error)
+        .with('photoYearMonthDirsNotFound', () =>
+          neverthrow.err(
+            new VRChatPhotoFileError('PHOTO_YEAR_MONTH_DIRS_NOT_FOUND'),
+          ),
+        )
+        .with('photoDirReadError', () =>
+          neverthrow.err(new VRChatPhotoFileError('PHOTO_DIR_READ_ERROR')),
+        )
+        .exhaustive();
     }
-    const convertWorldJoinLogInfoList = convertWorldJoinLogInfoListResult.value;
-    log.debug(
-      `convertWorldJoinLogInfoList len ${convertWorldJoinLogInfoList.length}`,
-    );
+    const toCreateWorldJoinLogInfos =
+      await infoFileService.getWorldJoinLogInfoListToPreview(settingStore)({
+        vrchatPhotoDir: vrchatPhotoDirResult.value.path,
+      });
+    if (toCreateWorldJoinLogInfos.isErr()) {
+      return neverthrow.err(toCreateWorldJoinLogInfos.error);
+    }
 
-    const worldJoinInfoList = convertWorldJoinLogInfoList.map((info) => {
+    const worldJoinInfoList = toCreateWorldJoinLogInfos.value.map((info) => {
       return {
         worldId: info.worldId,
         worldName: info.worldName,
@@ -133,7 +145,7 @@ const getWorldJoinInfoWithPhotoPath =
     log.debug(`photoPathList len ${photoPathList.length}`);
 
     // ワールドのJoin情報と写真の情報を結合
-    const result = infoFileService.groupingPhotoListByWorldJoinInfo(
+    const result = infoFileService.groupingPhotoListToPreviewByWorldJoinInfo(
       sortedWorldJoinInfoList,
       photoPathList.map((photo) => {
         return {
