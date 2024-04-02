@@ -1,194 +1,47 @@
 import path from 'node:path';
 import * as datefns from 'date-fns';
-import * as log from 'electron-log';
 import * as neverthrow from 'neverthrow';
-import { match } from 'ts-pattern';
 import type { getSettingStore } from '../../module/settingStore';
 import * as fs from '../lib/wrappedFs';
-import { getService } from '../service';
-import VRChatLogFileError from '../service/vrchatLog/error';
-import * as vrchatLogService from '../service/vrchatLog/vrchatLog';
-import VRChatPhotoFileError from '../service/vrchatPhoto/error';
-import * as vrchatPhotoService from '../service/vrchatPhoto/service';
-import { generateOGPImageBuffer } from './service/createWorldNameImage';
+import type VRChatLogFileError from '../service/vrchatLog/error';
+import type * as vrchatLogService from '../service/vrchatLog/vrchatLog';
+import type VRChatPhotoFileError from '../vrchatPhoto/error';
+import * as vrchatPhotoService from '../vrchatPhoto/service';
 
-const removeAdjacentDuplicateWorldEntries = (
-  worldJoinLogInfoList: vrchatLogService.WorldJoinLogInfo[],
-): vrchatLogService.WorldJoinLogInfo[] => {
-  worldJoinLogInfoList.sort((a, b) => {
-    return datefns.compareAsc(a.date, b.date);
-  });
+import * as worldJoinLogInfoService from './service/worldJoinLogInfo';
+import * as worldJoinLogInfoFileService from './service/worldJoinLogInfoFile';
 
-  // 隣接する重複を削除
-  let previousWorldId: string | null = null;
-  return worldJoinLogInfoList.filter((info, index) => {
-    if (index === 0 || info.worldId !== previousWorldId) {
-      previousWorldId = info.worldId;
-      return true;
-    }
-    return false;
-  });
-};
-
-const genYearMonthPath = (
-  vrchatPhotoDir: string,
-  info: vrchatLogService.WorldJoinLogInfo,
+const getRemoveAdjacentDuplicateWorldEntriesFlag = (
+  settingStore: ReturnType<typeof getSettingStore>,
 ) => {
-  return path.join(vrchatPhotoDir, datefns.format(info.date, 'yyyy-MM'));
-};
-const genfileName = (info: vrchatLogService.WorldJoinLogInfo) => {
-  return `${vrchatLogService.convertWorldJoinLogInfoToOneLine(info)}.jpeg`;
+  return settingStore.getRemoveAdjacentDuplicateWorldEntriesFlag() ?? false;
 };
 
-/**
- * JoinInfoLog の作成対象になる WorldJoinLogInfo[] を取得する
- */
-const getToCreateWorldJoinLogInfos =
+const getWorldJoinLogInfoListToPreview =
   (settingStore: ReturnType<typeof getSettingStore>) =>
-  async (): Promise<
+  async (props: {
+    vrchatPhotoDir: string;
+  }): Promise<
     neverthrow.Result<
       vrchatLogService.WorldJoinLogInfo[],
       VRChatLogFileError | VRChatPhotoFileError
     >
   > => {
-    console.log('getToCreateWorldJoinLogInfos');
-    const service = getService(settingStore);
-
-    const logFilesDir = service.getVRChatLogFilesDir();
-    if (logFilesDir.error !== null) {
-      match(logFilesDir.error)
-        .with('logFileDirNotFound', () =>
-          neverthrow.err(new VRChatLogFileError('LOG_FILE_DIR_NOT_FOUND')),
-        )
-        .with('logFilesNotFound', () =>
-          neverthrow.err(new VRChatLogFileError('LOG_FILES_NOT_FOUND')),
-        )
-        .exhaustive();
-    }
-
-    const logLinesResult = await vrchatLogService.getLogLinesFromDir({
-      storedLogFilesDirPath: logFilesDir.storedPath,
-      logFilesDir: logFilesDir.path,
-    });
-    if (logLinesResult.isErr()) {
-      return neverthrow.err(logLinesResult.error);
-    }
-    let preprocessedWorldJoinLogInfoList =
-      vrchatLogService.convertLogLinesToWorldJoinLogInfos(logLinesResult.value);
-
-    // removeAdjacentDuplicateWorldEntriesFlag が true の場合は隣接する重複を削除
-    if (settingStore.getRemoveAdjacentDuplicateWorldEntriesFlag()) {
-      preprocessedWorldJoinLogInfoList = removeAdjacentDuplicateWorldEntries(
-        preprocessedWorldJoinLogInfoList,
-      );
-    }
-
-    const vrchatPhotoDir = service.getVRChatPhotoDir();
-    if (vrchatPhotoDir.error !== null) {
-      return match(vrchatPhotoDir.error)
-        .with('photoDirReadError', () =>
-          neverthrow.err(new VRChatPhotoFileError('PHOTO_DIR_READ_ERROR')),
-        )
-        .with('photoYearMonthDirsNotFound', () =>
-          neverthrow.err(
-            new VRChatPhotoFileError('PHOTO_YEAR_MONTH_DIRS_NOT_FOUND'),
-          ),
-        )
-        .exhaustive();
-    }
-
-    // ログから抽出した作成できるファイルの情報から、すでに存在するファイルを除外
-    preprocessedWorldJoinLogInfoList = preprocessedWorldJoinLogInfoList.filter(
-      (info) => {
-        const infoPath = path.join(
-          genYearMonthPath(vrchatPhotoDir.path, info),
-          genfileName(info),
-        );
-        const isPathAlreadyExistResult = fs.existsSyncSafe(infoPath);
-        if (isPathAlreadyExistResult.isErr()) {
-          log.error('isPathAlreadyExistResult', isPathAlreadyExistResult.error);
-          return false;
-        }
-        const isPathAlreadyExist = isPathAlreadyExistResult.value;
-        return !isPathAlreadyExist;
-      },
-    );
-
-    console.log(
-      'preprocessedWorldJoinLogInfoList',
-      preprocessedWorldJoinLogInfoList.length,
-    );
-
-    return neverthrow.ok(preprocessedWorldJoinLogInfoList);
-  };
-
-const getToCreateMap =
-  (settingStore: ReturnType<typeof getSettingStore>) =>
-  async (props: {
-    vrchatPhotoDir: string;
-    imageWidth?: number;
-    // 同じワールドに連続して複数回入った履歴を削除するかどうか
-    removeAdjacentDuplicateWorldEntriesFlag: boolean;
-  }): Promise<
-    neverthrow.Result<
-      {
-        info: vrchatLogService.WorldJoinLogInfo;
-        yearMonthPath: string;
-        fileName: string;
-        content: Buffer;
-      }[],
-      Error
-    >
-  > => {
     const worldJoinLogInfoList =
-      await getToCreateWorldJoinLogInfos(settingStore)();
+      await worldJoinLogInfoService.getWorldJoinLogInfos(settingStore)();
     if (worldJoinLogInfoList.isErr()) {
       return neverthrow.err(worldJoinLogInfoList.error);
     }
 
-    // ファイルの作成
-    const toCreateMap: (
-      | {
-          info: vrchatLogService.WorldJoinLogInfo;
-          yearMonthPath: string;
-          fileName: string;
-          content: Buffer;
-        }
-      | Error
-      | null
-    )[] = await Promise.all(
-      worldJoinLogInfoList.value.map(async (info) => {
-        const contentImage = await generateOGPImageBuffer({
-          worldName: info.worldName,
-          date: info.date,
-          imageWidth: props.imageWidth,
-        });
-        if (contentImage.isErr()) {
-          return contentImage.error;
-        }
-        return {
-          info,
-          yearMonthPath: genYearMonthPath(props.vrchatPhotoDir, info),
-          fileName: genfileName(info),
-          content: contentImage.value,
-        };
-      }),
-    );
-    // error がある場合はエラーを返す
-    const error_list = toCreateMap.filter(
-      (map) => map instanceof Error,
-    ) as Error[];
-    if (error_list.length > 0) {
-      for (const error of error_list) {
-        log.error('error', error);
-      }
-      return neverthrow.err(error_list[0]);
-    }
-    const filteredMap = toCreateMap.filter((map) => map !== null) as Exclude<
-      (typeof toCreateMap)[number],
-      null | Error
-    >[];
-    return neverthrow.ok(filteredMap);
+    const toPreviewWorldJoinLogInfos =
+      worldJoinLogInfoFileService.filterToCreateWorldJoinLogInfoList({
+        worldJoinLogInfoList: worldJoinLogInfoList.value,
+        removeAdjacentDuplicateWorldEntriesFlag:
+          getRemoveAdjacentDuplicateWorldEntriesFlag(settingStore),
+        vrchatPhotoDir: props.vrchatPhotoDir,
+      });
+
+    return neverthrow.ok(toPreviewWorldJoinLogInfos);
   };
 
 const CreateFilesError = [
@@ -212,7 +65,9 @@ const createFiles =
       { error: Error; type: (typeof CreateFilesError)[number] }
     >
   > => {
-    const toCreateMapResult = await getToCreateMap(settingStore)({
+    const toCreateMapResult = await worldJoinLogInfoFileService.getToCreateMap(
+      settingStore,
+    )({
       vrchatPhotoDir: vrchatPhotoDir,
       removeAdjacentDuplicateWorldEntriesFlag:
         removeAdjacentDuplicateWorldEntriesFlag,
@@ -267,7 +122,7 @@ const createFiles =
     return neverthrow.ok({ createdFilesLength: toCreateMap.length });
   };
 
-const groupingPhotoListByWorldJoinInfo = (
+const groupingPhotoListToPreviewByWorldJoinInfo = (
   worldJoinInfoList: {
     worldId: `wrld_${string}`;
     worldName: string;
@@ -282,7 +137,7 @@ const groupingPhotoListByWorldJoinInfo = (
     worldId: `wrld_${string}`;
     worldName: string;
     joinDatetime: Date;
-  } | null;
+  };
   tookPhotoList: {
     photoPath: string;
     tookDatetime: Date;
@@ -325,7 +180,7 @@ const groupingPhotoListByWorldJoinInfo = (
         worldId: `wrld_${string}`;
         worldName: string;
         joinDatetime: Date;
-      } | null;
+      };
       tookPhotoList: {
         photoPath: string;
         tookDatetime: Date;
@@ -334,15 +189,16 @@ const groupingPhotoListByWorldJoinInfo = (
   });
 
   // 残った写真を記録しておく
-  const remainingPhotoList = vrcPhotoList.filter(
-    (photo) => !groupedPhotoList.flat().includes(photo),
-  );
-  if (remainingPhotoList.length > 0) {
-    results.push({
-      world: null,
-      tookPhotoList: remainingPhotoList,
-    });
-  }
+  // new join list の preview には必要ないのでコメントアウト
+  // const remainingPhotoList = vrcPhotoList.filter(
+  //   (photo) => !groupedPhotoList.flat().includes(photo),
+  // );
+  // if (remainingPhotoList.length > 0) {
+  //   results.push({
+  //     world: null,
+  //     tookPhotoList: remainingPhotoList,
+  //   });
+  // }
 
   return results;
 };
@@ -356,12 +212,12 @@ const getConfigAndValidateAndCreateFiles =
     const vrchatPhotoDir = vrchatPhotoService.getVRChatPhotoDir({
       storedPath: settingStore.getVRChatPhotoDir(),
     });
-    if (vrchatPhotoDir.error !== null) {
-      return neverthrow.err(vrchatPhotoDir.error);
+    if (vrchatPhotoDir.isErr()) {
+      return neverthrow.err(vrchatPhotoDir.error.error);
     }
     // join情報を記録するファイルを作成
     const result = await createFiles(settingStore)({
-      vrchatPhotoDir: vrchatPhotoDir.path,
+      vrchatPhotoDir: vrchatPhotoDir.value.path,
       removeAdjacentDuplicateWorldEntriesFlag:
         settingStore.getRemoveAdjacentDuplicateWorldEntriesFlag() ?? false,
     });
@@ -375,7 +231,7 @@ const getConfigAndValidateAndCreateFiles =
   };
 
 export {
-  getToCreateWorldJoinLogInfos,
-  groupingPhotoListByWorldJoinInfo,
+  groupingPhotoListToPreviewByWorldJoinInfo,
   getConfigAndValidateAndCreateFiles,
+  getWorldJoinLogInfoListToPreview,
 };
