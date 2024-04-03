@@ -848,15 +848,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@heroicons/react@npm:^2.0.18":
-  version: 2.0.18
-  resolution: "@heroicons/react@npm:2.0.18"
-  peerDependencies:
-    react: ">= 16"
-  checksum: 10c0/3cef7f67c65f8b00dc4f23788e468e661a24bd805f80e3b5514a986d69c91ef05407cf50078691573eced47147db87a9bd00cc165e4fecd2a9657cbaf3eaafb5
-  languageName: node
-  linkType: hard
-
 "@img/sharp-darwin-arm64@npm:0.33.3":
   version: 0.33.3
   resolution: "@img/sharp-darwin-arm64@npm:0.33.3"
@@ -3771,15 +3762,6 @@ __metadata:
   version: 3.1.2
   resolution: "csstype@npm:3.1.2"
   checksum: 10c0/32c038af259897c807ac738d9eab16b3d86747c72b09d5c740978e06f067f9b7b1737e1b75e407c7ab1fe1543dc95f20e202b4786aeb1b8d3bdf5d5ce655e6c6
-  languageName: node
-  linkType: hard
-
-"date-fns-tz@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "date-fns-tz@npm:2.0.0"
-  peerDependencies:
-    date-fns: ">=2.0.0"
-  checksum: 10c0/31cacb83c675ef8c2cf31d21c298ab6d74c5e975412dd804664d031ac0f2f03ed5bfb2a950fa15a321bbbcb90b833c300823fbceba0133680065a71894cc1170
   languageName: node
   linkType: hard
 
@@ -8698,7 +8680,6 @@ __metadata:
   resolution: "vrchat-join-recorder@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^1.6.0"
-    "@heroicons/react": "npm:^2.0.18"
     "@playwright/test": "npm:^1.41.2"
     "@radix-ui/react-alert-dialog": "npm:^1.0.5"
     "@radix-ui/react-label": "npm:^2.0.2"
@@ -8732,7 +8713,6 @@ __metadata:
     concurrently: "npm:^8.2.2"
     cross-env: "npm:^7.0.3"
     date-fns: "npm:^2.30.0"
-    date-fns-tz: "npm:^2.0.0"
     electron: "npm:^27.0.2"
     electron-builder: "npm:^24.13.3"
     electron-is-dev: "npm:^2.0.0"
