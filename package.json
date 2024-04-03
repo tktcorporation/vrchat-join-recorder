@@ -1,19 +1,21 @@
 {
   "name": "vrchat-join-recorder",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "main": "main/index.js",
   "author": {
     "name": "tktcorporation"
   },
   "description": "",
   "keywords": [
+    "vrchat",
+    "windows",
     "vite",
     "react",
     "electron",
     "typescript"
   ],
   "repository": {
-    "url": "https://github.com/tktcorporation/add-world-name-to-vrc-photo"
+    "url": "https://github.com/tktcorporation/vrchat-join-recorder"
   },
   "productName": "vrchat-join-recorder",
   "scripts": {
@@ -49,7 +51,6 @@
     "yarn": "4"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.18",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-progress": "^1.0.3",
@@ -66,7 +67,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
-    "date-fns-tz": "^2.0.0",
     "electron-is-dev": "^2.0.0",
     "electron-log": "^5.0.0",
     "electron-store": "^8.1.0",
